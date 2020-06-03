@@ -5,8 +5,8 @@ url:
 
 baseurl: /MoriPortfolio
 
-avatar: https://raw.githubusercontent.com/FromEndWorld/LOFFER/master/images/logo.png
-favicon: https://raw.githubusercontent.com/FromEndWorld/LOFFER/master/images/favicon.png
+avatar: https://raw.githubusercontent.com/Moriya-Taichi/Moriya-Taichi.github.io/images/mori.png
+favicon: https://raw.githubusercontent.com/Moriya-Taichi/Moriya-Taichi.github.io/images/icon.png
 
 navigation:
   - name: Home
