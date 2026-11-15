@@ -1,44 +1,21 @@
 ---
+layout: page
+title: 過去の記事
 permalink: /archive/
 ---
-<!doctype html>
-<html lang="ja">
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="color-scheme" content="light dark">
-  <title>過去の記事｜守谷 太一</title>
-  <link rel="icon" href="{{ '/assets/taichi-mark.png' | relative_url }}" type="image/png">
-  <link rel="stylesheet" href="{{ '/assets/portfolio.css' | relative_url }}?v=editorial-2">
-</head>
-<body>
-  <a class="skip-link" href="#main">本文へ移動</a>
-  <header class="site-header">
-    <div class="shell header-inner">
-      <a class="wordmark" href="{{ '/' | relative_url }}"><span class="mark" aria-hidden="true">TM</span> <span lang="en">Taichi Moriya</span></a>
-    </div>
-  </header>
-  <main id="main" class="shell archive-page" tabindex="-1">
-    <h1>過去の記事</h1>
-    {% if site.posts.size == 0 %}
-    <p>公開済みの記事はありません。</p>
-    {% else %}
-    <ul class="archive-list" role="list">
-      {% for post in site.posts %}
-      <li>
-        {% if post.link %}
-        <a href="{{ post.link | escape }}">
-        {% else %}
-        <a href="{{ post.url | relative_url }}">
-        {% endif %}
-          {{ post.title | escape }}
-          <time datetime="{{ post.date | date: '%Y-%m-%d' }}">{{ post.date | date: '%Y-%m-%d' }}</time>
-        </a>
-      </li>
-      {% endfor %}
-    </ul>
-    {% endif %}
-    <a class="button button-outline" href="{{ '/' | relative_url }}">トップページへ戻る</a>
-  </main>
-</body>
-</html>
+{% if site.posts.size == 0 %}
+<p>公開済みの記事はありません。</p>
+{% else %}
+<ul class="archive-list" role="list">
+  {% for post in site.posts %}
+  {% assign post_href = post.link %}
+  {% unless post_href %}{% assign post_href = post.url | relative_url %}{% endunless %}
+  <li>
+    <a href="{{ post_href | escape }}">
+      {{ post.title | escape }}
+      <time datetime="{{ post.date | date_to_xmlschema }}">{{ post.date | date: '%Y-%m-%d' }}</time>
+    </a>
+  </li>
+  {% endfor %}
+</ul>
+{% endif %}

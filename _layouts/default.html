@@ -1,34 +1,52 @@
-<!DOCTYPE html>
-<html>
-  {% include head.html %}
-  <body>
-    {% include nav.html %}
-
-    {% if page.toc==true %}
-      <aside class="toc">
-        {% include toc.html html=content %}
-      </aside>
-    {% endif %}
-
-    <div id="main" role="main" class="wrapper-content">
-      <div class="container">
-        {{ content }}
-      </div>
-    </div>
-
-    {% include analytics.html %}
-  </body>
-
-  {% if page.toc==true %}
-  <script>
-    document.getElementById("main").classList.add("withtoc");
-  </script>
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="light dark">
+  <meta name="description" content="{{ page.excerpt | default: site.description | strip_html | strip_newlines | escape }}">
+  {% if page.noindex %}<meta name="robots" content="noindex">{% endif %}
+  <title>{{ page.title | escape }}｜{{ site.name | escape }}</title>
+  <link rel="icon" href="{{ '/assets/retrofuture-mark.png' | relative_url }}" type="image/png">
+  <link rel="stylesheet" href="{{ '/assets/portfolio.css' | relative_url }}?v=retro-1">
+  <link rel="alternate" href="{{ '/feed.xml' | relative_url }}" type="application/atom+xml" title="{{ site.name | escape }}">
+  {% if page.collection == 'posts' and site.gitalk.clientID %}
+  <script src="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js"></script>
   {% endif %}
-
-  <div class="wrapper-footer-mobile">
-    <footer class="footer">
-      {% include footer.html %}
-    </footer>
-
-
+</head>
+<body>
+  <a class="skip-link" href="#main">本文へ移動</a>
+  <header class="site-header" id="top">
+    <div class="shell header-inner">
+      <a class="wordmark" href="{{ '/' | relative_url }}"><span class="mark" aria-hidden="true">TM</span> <span lang="en">Taichi Moriya</span></a>
+      <nav aria-label="メインナビゲーション">
+        <ul class="nav-list" role="list">
+          <li><a href="{{ '/' | relative_url }}#work">OSS・登壇</a></li>
+          <li><a href="{{ '/' | relative_url }}#experience">経歴</a></li>
+          <li><a href="{{ '/' | relative_url }}#profiles">プロフィール</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+  <main id="main" class="shell article-page" tabindex="-1">
+    {% if page.toc == true %}
+    <nav aria-label="記事の目次">
+      {% include toc.html html=content %}
+    </nav>
+    {% endif %}
+    {{ content }}
+  </main>
+  <footer class="site-footer">
+    <div class="shell footer-inner">
+      <small lang="en">© Taichi Moriya</small>
+      <nav aria-label="フッターナビゲーション">
+        <ul class="nav-list" role="list">
+          <li><a href="{{ '/archive/' | relative_url }}">過去の記事</a></li>
+          <li><a href="#top">ページ上部へ <span class="arrow arrow-up" aria-hidden="true"></span></a></li>
+        </ul>
+      </nav>
+    </div>
+  </footer>
+  {% include analytics.html %}
+</body>
 </html>

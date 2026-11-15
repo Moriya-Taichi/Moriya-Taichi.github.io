@@ -1,51 +1,30 @@
 ---
 layout: default
 ---
-
-<article class="posts">
-  <h1>{{ page.title }}</h1>
-
-  <div clsss="meta">
-    <span class="author">
-      {{ page.author }}
-    </span>
-
-    <span class="date">
-      {{ page.date | date: "%Y-%m-%d" }}
-    </span>
-
-    <ul class="tag">
-      {% for tag in page.tags %}
-      <li>
-        <a href="{{ site.url }}{{ site.baseurl }}/tags#{{ tag }}">
-          {{ tag }}
-        </a>
-      </li>
-      {% endfor %}
-    </ul>
-  </div>
-
-  <div class="entry">
-    {{ content }}
-  </div>
-
+<article class="article">
+  <h1 class="section-display">{{ page.title | escape }}</h1>
+  <p>
+    {% if page.author %}{{ page.author | escape }} · {% endif %}
+    <time datetime="{{ page.date | date_to_xmlschema }}">{{ page.date | date: '%Y-%m-%d' }}</time>
+  </p>
+  {% if page.tags.size > 0 %}
+  <ul>
+    {% for tag in page.tags %}
+    <li><a href="{{ '/tags/' | relative_url }}#{{ tag | escape }}">{{ tag | escape }}</a></li>
+    {% endfor %}
+  </ul>
+  {% endif %}
+  {{ content }}
   {% include disqus.html %}
   {% include gitalk.html %}
 </article>
-
-<div class="pagination">
-  {% if page.previous.url %}
-    <span class="prev" >
-      <a href="{{ site.url }}{{ site.baseurl }}{{ page.previous.url }}">
-        ← 上一篇
-      </a>
-    </span>
+{% if page.previous or page.next %}
+<nav class="post-neighbors" aria-label="前後の記事">
+  {% if page.previous %}
+  <a href="{{ page.previous.url | relative_url }}">前の記事「{{ page.previous.title | escape }}」</a>
   {% endif %}
-  {% if page.next.url %}
-    <span class="next" >
-      <a href="{{ site.url }}{{ site.baseurl }}{{ page.next.url }}">
-        下一篇 →
-      </a>
-    </span>
+  {% if page.next %}
+  <a href="{{ page.next.url | relative_url }}">次の記事「{{ page.next.title | escape }}」</a>
   {% endif %}
-</div>
+</nav>
+{% endif %}

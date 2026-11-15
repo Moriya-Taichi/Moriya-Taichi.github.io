@@ -10,14 +10,12 @@
   <meta property="og:title" content="守谷 太一｜モバイルエンジニア">
   <meta property="og:description" content="Sansan、DeNA、ソラジマでの開発経験と、登壇・OSSをまとめています。">
   <meta property="og:url" content="https://moriya-taichi.github.io/">
-  <meta property="og:image" content="https://moriya-taichi.github.io/assets/chrome-800.jpg">
-  <meta property="og:image:width" content="800">
-  <meta property="og:image:height" content="1000">
-  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:card" content="summary">
   <title>守谷 太一｜モバイルエンジニア</title>
   <link rel="canonical" href="https://moriya-taichi.github.io/">
-  <link rel="icon" href="assets/taichi-mark.png" type="image/png">
-  <link rel="stylesheet" href="assets/portfolio.css?v=editorial-2">
+  <link rel="icon" href="assets/retrofuture-mark.png" type="image/png">
+  <link rel="preload" href="assets/barlow-condensed-800.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="assets/portfolio.css?v=retro-1">
 </head>
 <body>
   <a class="skip-link" href="#main">本文へ移動</a>
@@ -26,8 +24,8 @@
       <a class="wordmark" href="./"><span class="mark" aria-hidden="true">TM</span> <span lang="en">Taichi Moriya</span></a>
       <nav aria-label="メインナビゲーション">
         <ul class="nav-list" role="list">
-          <li><a href="#experience">経歴</a></li>
           <li><a href="#work">OSS・登壇</a></li>
+          <li><a href="#experience">経歴</a></li>
           <li><a href="#profiles">プロフィール</a></li>
         </ul>
       </nav>
@@ -36,102 +34,24 @@
 
   <main class="shell" id="main" tabindex="-1">
     <section class="hero" aria-labelledby="name">
-      <div class="hero-copy">
-        <p class="hero-role">モバイルエンジニア</p>
-        <h1 id="name">
-          <span class="hero-name" lang="en"><span>TAICHI</span> <span>MORIYA</span></span>
-          <span class="hero-name-ja">守谷 太一</span>
-        </h1>
+      <div class="hero-graphic" aria-hidden="true"><span class="orbit"></span></div>
+      <p class="hero-role">モバイルエンジニア</p>
+      <h1 id="name">
+        <span class="hero-name" lang="en"><span>TAICHI</span> <span>MORIYA</span></span>
+        <span class="hero-name-ja">守谷 太一</span>
+      </h1>
+      <div class="hero-bottom">
         <p class="hero-lead">モバイルアプリを軸に、バックエンドの設計からリリースまで担当しています。</p>
         <div class="hero-actions">
-          <a class="button button-light" href="#experience">経歴を見る <span class="arrow arrow-down" aria-hidden="true"></span></a>
+          <a class="button button-light" href="#work">OSS・登壇を見る <span class="arrow arrow-down" aria-hidden="true"></span></a>
           <a class="button button-glass" href="https://github.com/Moriya-Taichi"><span lang="en">GitHub</span> <span class="arrow arrow-out" aria-hidden="true"></span></a>
         </div>
       </div>
-      <picture class="hero-art">
-        <source type="image/webp" srcset="assets/chrome-480.webp 480w, assets/chrome-800.webp 800w, assets/chrome-1200.webp 1200w" sizes="(min-width: 78rem) 600px, (min-width: 58rem) 47vw, calc(100vw - 2rem)">
-        <img src="assets/chrome-800.jpg" width="800" height="1000" alt="" fetchpriority="high">
-      </picture>
     </section>
 
-    <section class="section experience" id="experience" aria-labelledby="experience-title" tabindex="-1">
+    <section class="section" id="work" aria-labelledby="work-title" tabindex="-1">
       <header class="section-heading">
-        <h2 id="experience-title" class="section-display"><span>職務</span><span>経歴</span></h2>
-      </header>
-      <ol class="career" role="list">
-        <li class="career-item">
-          <div class="career-meta">
-            <span><time datetime="2025-07">2025年7月</time>〜現在</span>
-          </div>
-          <div class="career-title">
-            <h3><span lang="en">Sansan</span>株式会社</h3>
-            <p class="work-role">モバイルアプリ開発</p>
-          </div>
-          <div class="career-content">
-            <p>名刺管理アプリ「<span lang="en">Eight</span>」のiOS版で、新機能開発と既存アプリのリビルドをリード。2026年6月からはiOS・Android双方を担当し、機能のリリースに必要なバックエンドも開発しています。</p>
-          </div>
-        </li>
-        <li class="career-item">
-          <div class="career-meta">
-            <span><time datetime="2024-02">2024年2月</time>〜現在</span>
-            <span class="badge">副業</span>
-          </div>
-          <div class="career-title">
-            <h3>株式会社ソラジマ</h3>
-            <p class="work-role">モバイル・API開発</p>
-          </div>
-          <div class="career-content">
-            <p>縦読みマンガアプリ「ソラジマTOON」の立ち上げからリリースまで担当。Flutterでアプリを開発し、GoとGraphQLでAPIを実装しました。</p>
-          </div>
-        </li>
-        <li class="career-item">
-          <div class="career-meta">
-            <span><time datetime="2022-04">2022年4月</time>〜<time datetime="2025-06">2025年6月</time></span>
-          </div>
-          <div class="career-title">
-            <h3>株式会社ディー・エヌ・エー</h3>
-            <p class="work-role">モバイルアプリ・SDK開発</p>
-          </div>
-          <div class="career-content">
-            <ul class="career-projects">
-              <li><strong lang="en">DeNA Account / DeNA Pay</strong> — iOS SDKを開発し、関係者との調整とApple Pay対応をリード。</li>
-              <li><strong>スクサポ</strong> — スポーツスクールの運営を支援するサービスのアプリ開発を担当。</li>
-              <li><strong lang="en">VoicePococha</strong> — Flutter製の音声ライブ配信アプリで、設計の見直しと実装をリード。</li>
-            </ul>
-          </div>
-        </li>
-        <li class="career-item">
-          <div class="career-meta">
-            <span><time datetime="2021-02">2021年2月</time>〜<time datetime="2023-10">2023年10月</time></span>
-            <span class="badge">副業</span>
-          </div>
-          <div class="career-title">
-            <h3>株式会社<span lang="en">STELLA</span></h3>
-            <p class="work-role">iOS・Android開発</p>
-          </div>
-          <div class="career-content">
-            <p>ECサービスのアプリ版を立ち上げ、リリース後の開発と運用を担当しました。</p>
-          </div>
-        </li>
-      </ol>
-      <details class="earlier">
-        <summary>インターン・学歴</summary>
-        <ul class="earlier-list">
-          <li>DeNAの内定者インターンで、Flutterを使った日比谷音楽祭アプリの開発に参加。</li>
-          <li>Wantedly、ピクシブ、STELLAでiOS開発のインターンを経験。</li>
-          <li>岩手県立大学ソフトウェア情報学部。高速度カメラを用いたトンネル崩落予測を研究。</li>
-        </ul>
-      </details>
-      <dl class="stack">
-        <div><dt>モバイル</dt><dd lang="en">Swift · Kotlin · Flutter</dd></div>
-        <div><dt>バックエンド</dt><dd lang="en">Go · GraphQL · Ruby on Rails</dd></div>
-        <div><dt>インフラ</dt><dd lang="en">AWS · Terraform</dd></div>
-      </dl>
-    </section>
-
-    <section class="section works" id="work" aria-labelledby="work-title" tabindex="-1">
-      <header class="section-heading">
-        <h2 id="work-title" class="section-display"><span lang="en">OSS</span><span>・登壇</span></h2>
+        <h2 id="work-title" class="section-display"><span class="latin-display" lang="en">OSS</span>・登壇</h2>
       </header>
       <div class="work-grid">
         <section class="work-panel" aria-labelledby="oss-title">
@@ -156,19 +76,19 @@
           <ul class="work-list" role="list">
             <li>
               <a class="work-link" href="https://speakerdeck.com/sansantech/20250806-2">
-                <span><strong>VTFrameProcessorの紹介</strong> <span class="work-description"><span lang="en">Sansan × DMM.swift</span> · 2025年8月</span></span>
+                <span><strong>VTFrameProcessorの紹介</strong> <span class="work-description"><span lang="en">Sansan × DMM.swift</span> <time class="talk-date" datetime="2025-08">2025年8月</time></span></span>
                 <span class="arrow arrow-out" aria-hidden="true"></span>
               </a>
             </li>
             <li>
               <a class="work-link" href="https://fortee.jp/flutterkaigi-2024/proposal/46feefd8-106f-4cca-bab7-15e70f996bc1">
-                <span><strong>Flutterの描画エンジン SkiaとImpeller</strong> <span class="work-description"><span lang="en">FlutterKaigi 2024</span> · 2024年11月</span></span>
+                <span><strong>Flutterの描画エンジン SkiaとImpeller</strong> <span class="work-description"><span lang="en">FlutterKaigi 2024</span> <time class="talk-date" datetime="2024-11">2024年11月</time></span></span>
                 <span class="arrow arrow-out" aria-hidden="true"></span>
               </a>
             </li>
             <li>
               <a class="work-link" href="https://www.wantedly.com/id/moriya_taichi/items/3c4205df-75fd-44db-99da-c532ed7a27c0">
-                <span><strong>Apple SiliconのNeural EngineとAMX</strong> <span class="work-description"><span lang="en">iOSDC Japan 2024</span> · 2024年8月</span></span>
+                <span><strong>Apple SiliconのNeural EngineとAMX</strong> <span class="work-description"><span lang="en">iOSDC Japan 2024</span> <time class="talk-date" datetime="2024-08">2024年8月</time></span></span>
                 <span class="arrow arrow-out" aria-hidden="true"></span>
               </a>
             </li>
@@ -177,13 +97,80 @@
       </div>
     </section>
 
+    <section class="section experience" id="experience" aria-labelledby="experience-title" tabindex="-1">
+      <header class="section-heading">
+        <h2 id="experience-title" class="section-display">職務経歴</h2>
+      </header>
+      <ol class="career" role="list">
+        <li class="career-item">
+          <div class="career-meta">
+            <span><time datetime="2025-07">2025年7月</time>〜現在</span>
+          </div>
+          <div class="career-content">
+            <h3><span lang="en">Sansan</span>株式会社</h3>
+            <p class="work-role">モバイルアプリ開発</p>
+            <p>名刺管理アプリ「<span lang="en">Eight</span>」のiOS版で、新機能開発と既存アプリのリビルドをリード。2026年6月からはiOS・Android双方を担当し、機能のリリースに必要なバックエンドも開発しています。</p>
+          </div>
+        </li>
+        <li class="career-item">
+          <div class="career-meta">
+            <span><time datetime="2024-02">2024年2月</time>〜現在</span>
+            <span class="badge">副業</span>
+          </div>
+          <div class="career-content">
+            <h3>株式会社ソラジマ</h3>
+            <p class="work-role">モバイル・API開発</p>
+            <p>縦読みマンガアプリ「ソラジマTOON」の立ち上げからリリースまで担当。Flutterでアプリを開発し、GoとGraphQLでAPIを実装しました。</p>
+          </div>
+        </li>
+        <li class="career-item">
+          <div class="career-meta">
+            <span><time datetime="2022-04">2022年4月</time>〜<time datetime="2025-06">2025年6月</time></span>
+          </div>
+          <div class="career-content">
+            <h3>株式会社ディー・エヌ・エー</h3>
+            <p class="work-role">モバイルアプリ・SDK開発</p>
+            <ul class="career-projects">
+              <li><strong lang="en">DeNA Account / DeNA Pay</strong> — iOS SDKを開発し、関係者との調整とApple Pay対応をリード。</li>
+              <li><strong>スクサポ</strong> — スポーツスクールの運営を支援するサービスのアプリ開発を担当。</li>
+              <li><strong lang="en">VoicePococha</strong> — Flutter製の音声ライブ配信アプリで、設計の見直しと実装をリード。</li>
+            </ul>
+          </div>
+        </li>
+        <li class="career-item">
+          <div class="career-meta">
+            <span><time datetime="2021-02">2021年2月</time>〜<time datetime="2023-10">2023年10月</time></span>
+            <span class="badge">副業</span>
+          </div>
+          <div class="career-content">
+            <h3>株式会社<span lang="en">STELLA</span></h3>
+            <p class="work-role">iOS・Android開発</p>
+            <p>ECサービスのアプリ版を立ち上げ、リリース後の開発と運用を担当しました。</p>
+          </div>
+        </li>
+      </ol>
+      <details class="earlier">
+        <summary>インターン・学歴</summary>
+        <ul class="earlier-list">
+          <li>DeNAの内定者インターンで、Flutterを使った日比谷音楽祭アプリの開発に参加。</li>
+          <li>Wantedly、ピクシブ、STELLAでiOS開発のインターンを経験。</li>
+          <li>岩手県立大学ソフトウェア情報学部。高速度カメラを用いたトンネル崩落予測を研究。</li>
+        </ul>
+      </details>
+      <dl class="stack">
+        <div><dt>モバイル</dt><dd lang="en">Swift · Kotlin · Flutter</dd></div>
+        <div><dt>バックエンド</dt><dd lang="en">Go · GraphQL · Ruby on Rails</dd></div>
+        <div><dt>インフラ</dt><dd lang="en">AWS · Terraform</dd></div>
+      </dl>
+    </section>
+
     <section class="section profile-section" id="profiles" aria-labelledby="profiles-title" tabindex="-1">
       <div>
         <h2 id="profiles-title" class="section-display">プロフィール</h2>
       </div>
       <ul class="profile-links" role="list">
-        <li><a class="button button-accent" href="https://www.wantedly.com/id/moriya_taichi"><span lang="en">Wantedly</span> <span class="arrow arrow-out" aria-hidden="true"></span></a></li>
-        <li><a class="button button-outline" href="https://github.com/Moriya-Taichi"><span lang="en">GitHub</span> <span class="arrow arrow-out" aria-hidden="true"></span></a></li>
+        <li><a href="https://www.wantedly.com/id/moriya_taichi"><span lang="en">Wantedly</span> <span class="arrow arrow-out" aria-hidden="true"></span></a></li>
+        <li><a href="https://github.com/Moriya-Taichi"><span lang="en">GitHub</span> <span class="arrow arrow-out" aria-hidden="true"></span></a></li>
       </ul>
     </section>
   </main>
