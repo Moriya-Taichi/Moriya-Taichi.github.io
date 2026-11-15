@@ -1,9 +1,9 @@
-name: Taichi Moriya/守谷太一
-description: SoftwereEngineer/Students
+name: 守谷 太一
+description: モバイルエンジニア
 
-url: /Portfolio
+url: https://moriya-taichi.github.io
 
-baseurl: https://moriya-taichi.github.io/
+baseurl: ""
 
 avatar: https://raw.githubusercontent.com/Moriya-Taichi/Moriya-Taichi.github.io/master/images/mori.jpg
 favicon: https://raw.githubusercontent.com/Moriya-Taichi/Moriya-Taichi.github.io/master/images/icon.png
@@ -16,9 +16,6 @@ navigation:
   - name: Archive
     url: /archive
 
-# 每页的文章数
-paginate: 8
-
 # 文章简介的区分标记
 excerpt_separator: <!-- more -->
 
@@ -29,7 +26,6 @@ footer-links:
   github: Moriya-Taichi #https://github.com/<>
 
 permalink: /:title/
-paginate_path: /page:num/
 
 # The release of Jekyll Now that you're using
 version: v1.2.0
@@ -52,7 +48,6 @@ sass:
 plugins:
   - jekyll-sitemap
   - jekyll-feed
-  - jekyll-paginate
 
 # Exclude these files from your production _site
 exclude:
@@ -61,4 +56,3 @@ exclude:
   - LICENSE
   - README.md
   - CNAME
-
