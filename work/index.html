@@ -1,0 +1,41 @@
+---
+layout: default
+title: 制作・オープンソース
+section: work
+description: SwiftPulseとNido。Swiftで開発しているHTTPサーバーフレームワークとIaCツールを紹介します。
+---
+<div class="chapter-layout">
+  <header class="chapter-heading">
+    <h1><span class="display" lang="en">WORK</span><span class="chapter-ja">制作・オープンソース</span></h1>
+    <p>サーバーとインフラを、Swiftから。</p>
+  </header>
+  <div class="project-spread">
+    <article class="project project-pulse">
+      <p class="project-type" lang="en">HTTP SERVER</p>
+      <h2 class="project-name" lang="en"><span>Swift</span><span>Pulse</span></h2>
+      <div class="project-body">
+        <p>Swift ConcurrencyでHTTPサーバーを実装するフレームワーク。付属のStudioで、リクエストの重なりやワーカーの実行区間を確認できます。</p>
+        <ul class="project-facts" role="list">
+          <li>HTTP/1.1・Keep-Alive</li>
+          <li>ノンブロッキングソケット</li>
+          <li>タイムラインによる並行処理の可視化</li>
+        </ul>
+      </div>
+      <a class="project-link" href="https://github.com/Moriya-Taichi/SwiftPulse" aria-label="SwiftPulseをGitHubで見る"><span><span lang="en">GitHub</span>で見る</span><span aria-hidden="true">↗</span></a>
+    </article>
+    <article class="project project-nido">
+      <p class="project-type" lang="en">INFRASTRUCTURE AS CODE</p>
+      <h2 class="project-name" lang="en">Nido</h2>
+      <p class="project-equation" lang="en">Swift <span aria-hidden="true">→</span><span class="sr-only">から</span> Terraform</p>
+      <div class="project-body">
+        <p>Swiftで型安全にインフラを定義し、Terraformの設定と構成図を生成するツール。型で区別しているリソースの組み合わせを、コンパイル時に検証します。</p>
+        <ul class="project-facts" role="list">
+          <li>AWS・Azure・Google Cloud</li>
+          <li>Terraform / OpenTofuとの連携</li>
+          <li>同じ定義から構成図を生成</li>
+        </ul>
+      </div>
+      <a class="project-link" href="https://github.com/Moriya-Taichi/Nido" aria-label="NidoをGitHubで見る"><span><span lang="en">GitHub</span>で見る</span><span aria-hidden="true">↗</span></a>
+    </article>
+  </div>
+</div>
