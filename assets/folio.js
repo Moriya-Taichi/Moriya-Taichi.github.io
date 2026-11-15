@@ -60,8 +60,9 @@
 
   const restore = () => {
     const selected = tabs.findIndex(tab => tab.hash === window.location.hash);
-    show(Math.max(0, selected));
+    if (selected >= 0) show(selected);
   };
   window.addEventListener('hashchange', restore);
+  show(0);
   restore();
 })();
