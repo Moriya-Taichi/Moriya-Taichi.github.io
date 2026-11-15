@@ -1,0 +1,9 @@
+<p class="tenure-dates">
+  <time datetime="{{ include.entry.start }}">{{ include.entry.start | replace: '-', '.' }}</time>
+  <span class="tenure-dash" aria-hidden="true">—</span><span class="sr-only">から</span>
+  {% if include.entry.end %}
+    <time datetime="{{ include.entry.end }}">{{ include.entry.end | replace: '-', '.' }}</time>
+  {% else %}
+    <span>現在</span>
+  {% endif %}
+</p>

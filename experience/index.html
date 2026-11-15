@@ -3,21 +3,75 @@ layout: default
 title: 職務経歴
 section: experience
 description: Sansan、DeNA、ソラジマ、STELLAでのモバイルアプリ・SDK・バックエンド開発の経歴。
+timeline_start: 2021
+timeline:
+  - id: sansan
+    name: Sansan
+    lang: en
+    start: "2025-07"
+  - id: sorajima
+    name: ソラジマ
+    start: "2024-02"
+    kind: 副業
+  - id: dena
+    name: DeNA
+    lang: en
+    start: "2022-04"
+    end: "2025-06"
+  - id: stella
+    name: STELLA
+    lang: en
+    start: "2021-02"
+    end: "2023-10"
+    kind: 副業
 ---
+{% assign first_year = page.timeline_start %}
+{% assign last_year = site.time | date: '%Y' | plus: 0 %}
+{% assign year_count = last_year | minus: first_year | plus: 1 %}
+{% assign month_count = year_count | times: 12.0 %}
+{% assign current_month = site.time | date: '%m' | plus: 0 %}
+{% assign current_end = last_year | minus: first_year | times: 12 | plus: current_month %}
 <div class="history-layout">
   <header class="history-heading">
     <h1><span class="display" lang="en">HISTORY</span><span class="chapter-ja">職務経歴</span></h1>
   </header>
-  <div class="employers" aria-label="勤務先">
-    <a id="tab-sansan" href="#sansan" data-company="sansan" lang="en">Sansan</a>
-    <a id="tab-sorajima" href="#sorajima" data-company="sorajima">ソラジマ</a>
-    <a id="tab-dena" href="#dena" data-company="dena" lang="en">DeNA</a>
-    <a id="tab-stella" href="#stella" data-company="stella" lang="en">STELLA</a>
-  </div>
-  <div class="companies">
-    <section class="company" id="sansan" aria-labelledby="sansan-title">
+  <nav class="career-chart" aria-labelledby="career-chart-title" style="--year-count: {{ year_count }};">
+    <h2 id="career-chart-title">在籍期間</h2>
+    <div class="chart-scale" aria-hidden="true">
+      {% for year in (first_year..last_year) %}<span>{{ year }}</span>{% endfor %}
+    </div>
+    <ul class="chart-rows" role="list">
+      {% for entry in page.timeline %}
+      {% assign start_year = entry.start | slice: 0, 4 | plus: 0 %}
+      {% assign start_month = entry.start | slice: 5, 2 | plus: 0 %}
+      {% assign start = start_year | minus: first_year | times: 12 | plus: start_month | minus: 1 %}
+      {% assign end = current_end %}
+      {% if entry.end %}
+        {% assign end_year = entry.end | slice: 0, 4 | plus: 0 %}
+        {% assign end_month = entry.end | slice: 5, 2 | plus: 0 %}
+        {% assign end = end_year | minus: first_year | times: 12 | plus: end_month %}
+      {% endif %}
+      {% assign offset = start | times: 100 | divided_by: month_count %}
+      {% assign duration = end | minus: start | times: 100 | divided_by: month_count %}
+      <li>
+        <a class="chart-row{% if entry.kind %} is-side-work{% endif %}" href="#{{ entry.id }}" style="--start: {{ offset }}%; --duration: {{ duration }}%;">
+          <span class="chart-label">
+            <strong{% if entry.lang %} lang="{{ entry.lang }}"{% endif %}>{{ entry.name }}</strong>
+            {% if entry.kind %}<small>{{ entry.kind }}</small>{% endif %}
+          </span>
+          <span class="chart-track" aria-hidden="true"><span class="chart-bar{% unless entry.end %} is-current{% endunless %}"></span></span>
+          <span class="sr-only">{{ entry.start | replace: '-', '年' }}月から{% if entry.end %}{{ entry.end | replace: '-', '年' }}月{% else %}現在{% endif %}。詳細へ</span>
+        </a>
+      </li>
+      {% endfor %}
+    </ul>
+    <p class="chart-hint">勤務先を選ぶと詳細に移動します。<span>→ は在籍中</span></p>
+  </nav>
+  <div class="companies" id="career-details">
+    <section class="company" tabindex="-1" id="sansan" aria-labelledby="sansan-title">
       <div class="tenure">
-        <p class="tenure-dates"><time datetime="2025-07">2025.07</time><span class="tenure-dash" aria-hidden="true">—</span><span><span class="sr-only">から</span>現在</span></p>
+        {% assign entry = page.timeline | where: 'id', 'sansan' | first %}
+        {% include career-dates.html entry=entry %}
         <p class="company-role">モバイルアプリ開発</p>
       </div>
       <div class="company-body">
@@ -26,10 +80,11 @@ description: Sansan、DeNA、ソラジマ、STELLAでのモバイルアプリ・
         <p>2026年6月からはiOS・Android双方を担当し、機能のリリースに必要なバックエンドも開発しています。</p>
       </div>
     </section>
-    <section class="company" id="sorajima" aria-labelledby="sorajima-title">
+    <section class="company" tabindex="-1" id="sorajima" aria-labelledby="sorajima-title">
       <div class="tenure">
-        <p class="tenure-dates"><time datetime="2024-02">2024.02</time><span class="tenure-dash" aria-hidden="true">—</span><span><span class="sr-only">から</span>現在</span></p>
-        <p class="company-role">モバイル・API開発<br>副業</p>
+        {% assign entry = page.timeline | where: 'id', 'sorajima' | first %}
+        {% include career-dates.html entry=entry %}
+        <p class="company-role">モバイル・API開発<br>{{ entry.kind }}</p>
       </div>
       <div class="company-body">
         <h2 id="sorajima-title">ソラジマ<span class="legal-name">株式会社</span></h2>
@@ -37,24 +92,26 @@ description: Sansan、DeNA、ソラジマ、STELLAでのモバイルアプリ・
         <p>Flutterでアプリを開発し、GoとGraphQLでAPIを実装しました。</p>
       </div>
     </section>
-    <section class="company" id="dena" aria-labelledby="dena-title">
+    <section class="company" tabindex="-1" id="dena" aria-labelledby="dena-title">
       <div class="tenure">
-        <p class="tenure-dates"><time datetime="2022-04">2022.04</time><span class="tenure-dash" aria-hidden="true">—</span><time datetime="2025-06"><span class="sr-only">から</span>2025.06</time></p>
+        {% assign entry = page.timeline | where: 'id', 'dena' | first %}
+        {% include career-dates.html entry=entry %}
         <p class="company-role">モバイルアプリ・SDK開発</p>
       </div>
       <div class="company-body">
         <h2 id="dena-title"><span lang="en">DeNA</span><span class="legal-name">株式会社ディー・エヌ・エー</span></h2>
-        <ul class="company-projects">
+        <ul class="company-projects" role="list">
           <li><strong lang="en">DeNA Account / DeNA Pay</strong><p>iOS SDKを開発し、関係者との調整とApple Pay対応をリード。</p></li>
           <li><strong>スクサポ</strong><p>スポーツスクールの運営を支援するサービスのアプリ開発を担当。</p></li>
           <li><strong lang="en">VoicePococha</strong><p>Flutter製の音声ライブ配信アプリで、設計の見直しと実装をリード。</p></li>
         </ul>
       </div>
     </section>
-    <section class="company" id="stella" aria-labelledby="stella-title">
+    <section class="company" tabindex="-1" id="stella" aria-labelledby="stella-title">
       <div class="tenure">
-        <p class="tenure-dates"><time datetime="2021-02">2021.02</time><span class="tenure-dash" aria-hidden="true">—</span><time datetime="2023-10"><span class="sr-only">から</span>2023.10</time></p>
-        <p class="company-role">iOS・Android開発<br>副業</p>
+        {% assign entry = page.timeline | where: 'id', 'stella' | first %}
+        {% include career-dates.html entry=entry %}
+        <p class="company-role">iOS・Android開発<br>{{ entry.kind }}</p>
       </div>
       <div class="company-body">
         <h2 id="stella-title"><span lang="en">STELLA</span><span class="legal-name">株式会社</span></h2>

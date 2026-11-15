@@ -311,28 +311,117 @@ img { display: block; max-inline-size: 100%; height: auto; }
 }
 .project-link > :last-child, .poster-link > :last-child { margin-inline-start: auto; font-size: 1.7rem; line-height: 1; }
 
-.history-layout { display: grid; grid-template-columns: minmax(12rem, .3fr) minmax(0, 1fr); gap: 0 2rem; padding-block: 1rem; }
-.history-heading { grid-column: 1; grid-row: 1; align-self: start; padding-block: .6rem 1.8rem; }
-.history-heading .display { font-size: clamp(3.4rem, 6.7vw, 7rem); }
-.employers { display: flex; align-items: end; flex-wrap: wrap; gap: .5rem 1.4rem; grid-column: 2; align-self: end; padding-block-end: 1rem; }
-.employers a { display: inline-flex; align-items: center; min-block-size: 44px; min-inline-size: 44px; padding: .5rem .4rem; color: var(--muted); font: 650 .95rem/1.4 var(--mono); text-decoration: none; border-block-end: 2px solid transparent; }
-.employers a[aria-selected="true"] { color: var(--ink); border-block-end-color: var(--accent); }
-.companies { grid-column: 1 / -1; border-block: 1px solid var(--line); }
-
-.company {
+.history-layout {
+  --career-rail: clamp(9rem, 21vw, 18rem);
   display: grid;
-  grid-template-columns: minmax(12rem, .3fr) minmax(0, 1fr);
-  gap: 1.5rem 2rem;
-  min-block-size: 29rem;
-  padding-block: clamp(1.7rem, 3.5vw, 3.2rem);
+  grid-template-columns: var(--career-rail) minmax(0, 1fr);
+  gap: 1.4rem clamp(1rem, 3vw, 3rem);
+  padding-block: 1rem;
 }
 
-.company + .company { border-block-start: 1px solid var(--line); }
-.company[role="tabpanel"] { border-block-start: 0; }
-.tenure { padding-inline-end: .8rem; }
-.tenure-dates { display: flex; align-items: start; flex-direction: column; color: var(--accent); font: 800 clamp(2.3rem, 4.2vw, 4.8rem)/1.15 var(--display); font-variant-numeric: tabular-nums; letter-spacing: -.01em; }
-.tenure-dash { line-height: .65; margin-block: .2rem .4rem; }
-.company-role { margin-block-start: 1.3rem; color: var(--muted); font-size: .8rem; }
+.history-heading { align-self: start; padding-block: .6rem 1rem; }
+.history-heading .display { font-size: clamp(2.9rem, 6.4vw, 6.8rem); }
+
+.career-chart {
+  --chart-label: clamp(4rem, 9vw, 8.5rem);
+  --chart-grid: color-mix(in srgb, #b7c8ff 27%, transparent);
+  background: #131b2d;
+  color: #e6ecff;
+  --focus: #b7c8ff;
+  border: 1px solid #617499;
+  padding: clamp(.85rem, 2.3vw, 2rem);
+}
+
+.career-chart h2 { font-size: 1rem; margin-block-end: 1rem; }
+.chart-scale {
+  display: grid;
+  grid-template-columns: repeat(var(--year-count), minmax(0, 1fr));
+  margin-inline-start: var(--chart-label);
+  border-block-end: 1px solid var(--chart-grid);
+  font: 600 clamp(.6rem, 1.1vw, .9rem)/1.5 var(--mono);
+  color: #b7c8ff;
+}
+.chart-scale span { padding: 0 .16rem .4rem; }
+.chart-rows { padding: 0; list-style: none; }
+
+.chart-row {
+  display: grid;
+  grid-template-columns: var(--chart-label) minmax(0, 1fr);
+  min-block-size: 48px;
+  color: inherit;
+  text-decoration: none;
+}
+.chart-label { align-self: center; font-size: clamp(.75rem, 1.4vw, 1rem); padding: .3rem .3rem .3rem 0; }
+.chart-label small { display: block; font-size: .68rem; color: #f9ad9a; }
+
+.chart-track {
+  position: relative;
+  background-image: linear-gradient(to right, var(--chart-grid) 1px, transparent 1px);
+  background-size: calc(100% / var(--year-count)) 100%;
+  border-inline-end: 1px solid var(--chart-grid);
+  border-block-end: 1px solid var(--chart-grid);
+}
+
+.chart-bar {
+  --bar-color: #b7c8ff;
+  position: absolute;
+  inset: 50% auto auto var(--start);
+  inline-size: var(--duration);
+  block-size: .72rem;
+  background: var(--bar-color);
+  translate: 0 -50%;
+  transform-origin: left center;
+}
+
+.is-side-work .chart-bar { --bar-color: #f9ad9a; }
+.chart-bar.is-current { clip-path: polygon(0 0, calc(100% - .4rem) 0, 100% 50%, calc(100% - .4rem) 100%, 0 100%); }
+.chart-hint {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: .3rem 1rem;
+  margin-block-start: .9rem;
+  color: #c4cde2;
+  font-size: .75rem;
+}
+
+.chart-row:focus-visible { outline-offset: 2px; }
+.chart-row:focus-visible .chart-label strong { text-decoration: underline; }
+
+.companies { grid-column: 1 / -1; }
+.company {
+  position: relative;
+  display: grid;
+  grid-template-columns: var(--career-rail) minmax(0, 1fr);
+  gap: 1.4rem clamp(1rem, 3vw, 3rem);
+  padding: clamp(1.5rem, 3.4vw, 3rem) 0 clamp(1.5rem, 3.4vw, 3rem) clamp(1.1rem, 2.5vw, 2.5rem);
+  border-inline-start: 1px solid var(--line);
+  border-block-start: 1px solid var(--line);
+}
+.company:last-child { border-block-end: 1px solid var(--line); }
+.company::before {
+  position: absolute;
+  inset: clamp(2rem, 4vw, 4rem) auto auto 0;
+  inline-size: .62rem;
+  block-size: .62rem;
+  border: 2px solid var(--accent);
+  background: var(--paper);
+  translate: -50% 0;
+  content: '';
+}
+
+.company:target { background: var(--surface); }
+.company:target::before { background: var(--accent); }
+.tenure-dates {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: .1rem .35rem;
+  color: var(--accent);
+  font: 800 clamp(1.55rem, 2.45vw, 2.6rem)/1.2 var(--display);
+  font-variant-numeric: tabular-nums;
+}
+.company-role { margin-block-start: .6rem; color: var(--muted); font-size: .8rem; }
 
 .company-body h2 {
   margin-block-end: clamp(1.3rem, 2.4vw, 2.4rem);
@@ -347,7 +436,7 @@ img { display: block; max-inline-size: 100%; height: auto; }
 .company-projects { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 14rem), 1fr)); gap: 1.3rem; padding: 0; list-style: none; }
 .company-projects strong { font-size: .94rem; }
 .company-projects p { margin-block-start: .6rem; font-size: .9rem; color: var(--muted); }
-.history-more { grid-column: 2; justify-self: start; margin-block-start: 1rem; }
+.history-more { grid-column: 1 / -1; justify-self: start; }
 
 .talks-layout { padding-block: 1rem; }
 .talks-heading { margin-block-end: 1.8rem; }
@@ -409,7 +498,32 @@ img { display: block; max-inline-size: 100%; height: auto; }
 @media (hover: hover) {
   .door:hover .door-title { text-decoration: underline; text-decoration-thickness: .025em; text-underline-offset: .05em; }
   .door:hover .door-arrow { translate: .1em -.1em; }
-  .signature:hover, .nav-list a:hover, .project-link:hover, .poster-link:hover, .employers a:hover { text-decoration: underline; }
+  .signature:hover, .nav-list a:hover, .project-link:hover, .poster-link:hover { text-decoration: underline; }
+}
+
+@media (hover: hover) {
+  .chart-row:hover .chart-label strong { text-decoration: underline; }
+  .chart-row:hover .chart-track { background-color: #b7c8ff1a; }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .chart-bar { animation: chart-draw 520ms cubic-bezier(.2, .65, .25, 1) both; }
+  .chart-rows li:nth-child(2) .chart-bar { animation-delay: 60ms; }
+  .chart-rows li:nth-child(3) .chart-bar { animation-delay: 120ms; }
+  .chart-rows li:nth-child(4) .chart-bar { animation-delay: 180ms; }
+  .company:target::before { animation: chart-marker 420ms ease-out; }
+  .door::before { transition: opacity 180ms ease-out; }
+  .door-work:hover::before, .door-work:focus-visible::before { opacity: .35; }
+}
+
+@keyframes chart-draw {
+  from { transform: scaleX(0); }
+  to { transform: scaleX(1); }
+}
+
+@keyframes chart-marker {
+  from { box-shadow: 0 0 0 0 var(--accent); }
+  to { box-shadow: 0 0 0 .65rem transparent; }
 }
 
 @media (min-width: 48rem) and (prefers-reduced-motion: no-preference) {
@@ -423,7 +537,6 @@ img { display: block; max-inline-size: 100%; height: auto; }
   .project { min-block-size: 35rem; }
   .project-name { font-size: clamp(4.5rem, 11vw, 8rem); }
   .project-nido .project-name { font-size: clamp(5rem, 13vw, 9rem); }
-  .history-layout, .company { grid-template-columns: minmax(10rem, .3fr) minmax(0, 1fr); gap: 1.2rem; }
 }
 
 @media (max-width: 49.99rem) {
@@ -449,6 +562,7 @@ img { display: block; max-inline-size: 100%; height: auto; }
   .about-layout { grid-template-columns: minmax(0, .4fr) minmax(0, 1fr); gap: 1.5rem; }
   .skills > div { grid-template-columns: minmax(0, 1fr); }
   .wide-only { display: none; }
+  .history-layout { grid-template-columns: minmax(0, 1fr); }
 }
 
 @media (max-width: 35.99rem) {
@@ -481,15 +595,9 @@ img { display: block; max-inline-size: 100%; height: auto; }
   .project { min-block-size: 0; padding: 1.4rem; }
   .project-name, .project-nido .project-name { font-size: clamp(5.2rem, 23vw, 7.5rem); }
   .project-body { margin-block-start: .8rem; }
-  .history-layout { grid-template-columns: minmax(0, 1fr); gap: 0; padding-block-start: .5rem; }
-  .history-heading, .employers, .history-more { grid-column: 1; }
-  .history-heading { padding-block-end: 1.3rem; }
-  .employers { gap: .2rem .7rem; }
-  .employers a { font-size: .8rem; padding-inline: .15rem; }
-  .company { grid-template-columns: minmax(0, 1fr); min-block-size: 0; gap: 1.6rem; }
-  .tenure-dates { flex-direction: row; align-items: baseline; flex-wrap: wrap; gap: .4rem; font-size: 2.1rem; }
-  .tenure-dash { margin: 0; }
-  .company-role { margin-block-start: .6rem; }
+  .history-layout { gap: 1rem; padding-block-start: .5rem; }
+  .history-heading { padding-block-end: .1rem; }
+  .company { grid-template-columns: minmax(0, 1fr); gap: 1.2rem; }
   .company-body h2 { font-size: clamp(2.5rem, 12vw, 4rem); }
   .company-projects { grid-template-columns: minmax(0, 1fr); }
   .talk-poster { display: flex; min-block-size: 28rem; padding: 1.4rem; }
@@ -524,5 +632,7 @@ img { display: block; max-inline-size: 100%; height: auto; }
   .door, .project, .talk-poster { color: CanvasText; background: Canvas; border: 1px solid CanvasText; }
   .door::before, .door::after { display: none; }
   :focus-visible { outline-color: Highlight; }
-  .employers a[aria-selected="true"] { border-color: Highlight; }
+  .chart-track { background: none; border-color: CanvasText; }
+  .chart-bar { forced-color-adjust: none; background: Highlight; }
+  .company:target { border-color: Highlight; }
 }
