@@ -6,6 +6,6 @@ gem "kramdown", "~> 2.5"
 gem "kramdown-parser-gfm", "~> 1.1"
 
 group :jekyll_plugins do
-  gem "jekyll-feed", "~> 0.17.0"
+  gem "jekyll-feed", "~> 0.18.0"
   gem "jekyll-sitemap", "~> 1.4"
 end
