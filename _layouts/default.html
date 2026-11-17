@@ -2,6 +2,8 @@
 <html lang="ja">
 <head>
   <meta charset="utf-8">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' https:; object-src 'none'; base-uri 'none'; form-action 'none'">
+  <meta name="referrer" content="strict-origin-when-cross-origin">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="color-scheme" content="light dark">
   {% assign description = page.description | default: page.excerpt | default: site.description | strip_html | strip_newlines %}
@@ -20,9 +22,6 @@
   <link rel="stylesheet" href="{{ '/assets/folio.css' | relative_url }}?v=3">
   <link rel="alternate" href="{{ '/feed.xml' | relative_url }}" type="application/atom+xml" title="守谷 太一">
   <script src="{{ '/assets/folio.js' | relative_url }}?v=3" defer></script>
-  {% if page.collection == 'posts' and site.gitalk.clientID %}
-  <script src="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js"></script>
-  {% endif %}
 </head>
 <body class="{{ page.section | default: 'reading' | escape }}">
   <a class="skip-link" href="#main">本文へ移動</a>
@@ -58,6 +57,5 @@
       </ul>
     </nav>
   </footer>
-  {% include analytics.html %}
 </body>
 </html>
